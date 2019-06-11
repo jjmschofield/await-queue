@@ -80,15 +80,27 @@ workflows:
   build_and_test:
     jobs:
       - dependencies
+          filters:
+            tags:
+              only: /^v.*/
       - build:
           requires:
-          - dependencies
+            - dependencies
+          filters:
+            tags:
+              only: /^v.*/
       - test_unit:
           requires:
-          - dependencies
+            - dependencies
+          filters:
+            tags:
+              only: /^v.*/
       - lint:
           requires:
-          - dependencies
+            - dependencies
+          filters:
+            tags:
+              only: /^v.*/
       - deploy:
           requires:
             - build
