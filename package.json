@@ -1,6 +1,6 @@
 {
   "name": "@jjmschofield/await-queue",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "A charming little queue filled with awaitable tasks",
@@ -18,15 +18,12 @@
   "license": "MIT",
   "repository": "jjmschofield/await-queue",
   "keywords": [
-    "express",
-    "framework",
-    "sinatra",
-    "web",
-    "rest",
-    "restful",
-    "router",
-    "app",
-    "api"
+    "await",
+    "async",
+    "queue",
+    "concurrency",
+    "LIFO",
+    "FIFO"
   ],
   "dependencies": {},
   "devDependencies": {

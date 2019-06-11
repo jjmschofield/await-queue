@@ -24,8 +24,6 @@ const someQueableThing = async () =>{
     
     // Profit
 }
-
-
 ```
 
 Your async task can be any awaitable thing, it should take an object of inputs as it's first parameter eg:
