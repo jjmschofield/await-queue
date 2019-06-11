@@ -1,0 +1,77 @@
+version: 2
+jobs:
+  dependencies:
+    docker:
+    - image: jjmschofield/alpine-docker:node-10.16.0
+    steps:
+    - checkout
+    - restore_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+    - run:
+        name: Npm Install
+        command: npm install
+    - save_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+        paths:
+        - node_modules
+
+  build:
+    docker:
+    - image: jjmschofield/alpine-docker:node-10.16.0
+    steps:
+    - checkout
+    - restore_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+    - run: npm run build
+    - save_cache:
+        key: build-cache-{{ .Environment.CIRCLE_SHA1 }}
+        paths:
+          - dist
+
+  test_unit:
+    docker:
+    - image: jjmschofield/alpine-docker:node-10.16.0
+    steps:
+    - checkout
+    - restore_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+    - run:
+        name: Unit Tests
+        command: npm run test:unit:coverage
+    - store_artifacts:
+        path: tests/reports/unit/junit.xml
+        prefix: tests
+    - store_artifacts:
+        path: tests/reports/unit/coverage
+        prefix: coverage
+    - store_test_results:
+        path: tests/reports/unit
+    - run:
+        name: Coveralls
+        command: export COVERALLS_GIT_COMMIT=$CIRCLE_SHA1 && npm run coveralls < tests/reports/unit/coverage/lcov.info
+
+  lint:
+    docker:
+      - image: jjmschofield/alpine-docker:node-10.16.0
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Lint
+          command: npm run lint
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - dependencies
+      - build:
+          requires:
+          - dependencies
+      - test_unit:
+          requires:
+          - dependencies
+      - lint:
+          requires:
+          - dependencies

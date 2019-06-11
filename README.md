@@ -1,10 +1,12 @@
 # await-queue
+[![CircleCI](https://circleci.com/gh/jjmschofield/await-queue.svg?style=shield)](https://circleci.com/gh/jjmschofield/await-queue) [![Coverage Status](https://coveralls.io/repos/github/jjmschofield/await-queue/badge.svg?branch=master)](https://coveralls.io/github/jjmschofield/await-queue?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/jjmschofield/node-typescript-starter/badge.svg?targetFile=package.json)](https://snyk.io/test/github/jjmschofield/await-queue?targetFile=package.json)
+
 A simple awaited queue for NodeJs. 
 
 Designed to make managing concurrency limiting a breeze using tidy async/await syntax.
 
 ## Installation
-Right now just copy the contents of index.js into whatever you need.
+Right now just copy the contents of index.ts into whatever you need.
 
 ## Usage
 ```
