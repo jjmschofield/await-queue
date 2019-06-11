@@ -38,7 +38,7 @@ As you can imagine, you can add virtually any function in which returns a promis
 What is a handy library without some config options? Here are yours:
 
 ```
-const { Queue, QUEUE_MODE } = require('<path to file>');
+const { Queue, QUEUE_MODE } = require(''@jjmschofield/await-queue'');
 
 const queue = new Queue({ 
     maxRetry: 3, // Number of times to retry a thing before returning the final error recieved
