@@ -4,7 +4,7 @@ A simple awaited queue for NodeJs.
 Designed to make managing concurrency limiting a breeze using tidy async/await syntax.
 
 ## Installation
-Right now just copy the contents of index.js into whatever you need.
+Right now just copy the contents of index.ts into whatever you need.
 
 ## Usage
 ```
